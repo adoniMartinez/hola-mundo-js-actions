@@ -1,0 +1,21 @@
+name: Notificación Hola Mundo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v3
+
+      - name: Mostrar contenido del archivo
+        run: cat index.html
+
+      - name: Enviar notificación a ntfy
+        run: |
+          curl -d "🚀 Se hizo un push en main del repo $GITHUB_REPOSITORY por $GITHUB_ACTOR" \
+          https://ntfy.sh/devops-itla
